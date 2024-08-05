@@ -38,21 +38,42 @@ class TestStringNumValue(unittest.TestCase):
 
     def test_appending_a_single_character_should_return_its_value(self):
         # We use append to add a character to the initially empty string
-        pass
+        self.uut.append("a")
+        self.assertEqual(1, self.uut.value)
 
     def test_appending_multiple_characters_should_return_combined_value(self):
-        pass
+        self.uut.append("a")
+        self.uut.append("b")
+        self.uut.append("c")
+        self.assertEqual(6, self.uut.value)
 
     def test_unsupported_characters_should_not_count(self):
-        pass
+        self.uut.set("=")
+        self.assertEqual(0, self.uut.value)
+
+        self.uut.set("#")
+        self.assertEqual(0, self.uut.value)
+
+        self.uut.set("-")
+        self.assertEqual(0, self.uut.value)
 
     def test_what_more_can_you_think_of_to_test(self):
         # Can you come up with another test that you can run?
-        pass
+        ...
 
-    def test_new_functionality_that_you_invented_for_this_uut(self):
-        # You could implement the __str__ method and test that?
-        pass
+    def test_get_value_at_index_valid_index_valid_score(self):
+        self.uut.set("HelloWorld")
+        self.assertEqual(self.uut.get_value_at_index(1), 5)
+
+        self.uut.set("ThisIsSoCool")
+        self.assertEqual(self.uut.get_value_at_index(4), 9)
+
+
+    def test_get_value_at_index_invalid_index_raises_index_error(self):
+        self.uut.set("1")
+        with self.assertRaises(IndexError):
+            self.uut.get_value_at_index(1)
+            self.uut.get_value_at_index(-1)
 
 
 if __name__ == '__main__':

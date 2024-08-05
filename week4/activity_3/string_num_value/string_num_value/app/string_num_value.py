@@ -23,7 +23,7 @@ class StringNumValue:
     implemented and is part of the exercise!**
     """
     def __init__(self, s=''):
-        self.s = s
+        self.s = s.lower()
 
     @property
     def value(self):
@@ -33,7 +33,25 @@ class StringNumValue:
 
         :return: The numeric value of the string
         """
-        return ord(self.s) - ord('0') if len(self.s) else 0
+
+        lst = list(self.s)
+        new_lst = []
+        for char in lst:
+            if char.isnumeric():
+                new_lst.append(int(char))
+            elif char.isalpha():
+                new_lst.append((ord(char) - 96) if len(self.s) else 0)
+
+        return sum(new_lst)
+
+    @property
+    def list(self):
+        return list(self.s)
+
+    def get_value_at_index(self, index):
+        if index < 0 or index > len(self.s):
+            raise IndexError
+        return ord(self.s[index]) - 96 if self.s[index].isalpha() else int(self.s[index]) if self.s[index].isdigit() else 0
 
     def set(self, s):
         """
@@ -41,7 +59,7 @@ class StringNumValue:
 
         :param s: String to write
         """
-        self.s = s
+        self.s = s.lower()
 
     def append(self, a):
         """
@@ -49,4 +67,10 @@ class StringNumValue:
 
         :param a: String to append
         """
-        self.s += a
+        self.s += a.lower()
+
+
+if __name__ == '__main__':
+    s = input('Enter a string: ')
+    a = StringNumValue(s)
+    print(a.value)
