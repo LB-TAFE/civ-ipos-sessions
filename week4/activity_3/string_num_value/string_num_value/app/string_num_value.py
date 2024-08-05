@@ -40,7 +40,7 @@ class StringNumValue:
             if char.isnumeric():
                 new_lst.append(int(char))
             elif char.isalpha():
-                new_lst.append((ord(char) - 96) if len(self.s) else 0)
+                new_lst.append((ord(char) - 96))
 
         return sum(new_lst)
 
@@ -51,6 +51,13 @@ class StringNumValue:
     def get_value_at_index(self, index):
         if index < 0 or index > len(self.s):
             raise IndexError
+        # SAME AS
+        # if self.s[index].isalpha():
+        #     return ord(self.s[index]) - 96
+        # elif self.s[index].isdigit():
+        #     return int(self.s[index])
+        # else:
+        #     return 0
         return ord(self.s[index]) - 96 if self.s[index].isalpha() else int(self.s[index]) if self.s[index].isdigit() else 0
 
     def set(self, s):
