@@ -8,6 +8,9 @@ def circle_area(r):
     if type(r) not in [int, float]:
         raise TypeError("Radius must be an integer or a float.")
     # after running unit tests uncomment these lines then progress to adding in the snippet
+    if type(r) not in [int, float]:
+        raise TypeError("The radius must be a non-negative real number")
+
     if r < 0:
         raise ValueError("Radius cannot be negative.")
 

@@ -3,8 +3,7 @@
 import unittest  # unit testing framework
 from math import pi
 
-from src.circle import \
-    circle_area  # importing the function we wrote in the other file
+from src.circle import circle_area  # importing the function we wrote in the other file
 
 
 class TestCircleArea(unittest.TestCase):
